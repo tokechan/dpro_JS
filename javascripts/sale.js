@@ -3,24 +3,51 @@ const numberElement = document.getElementById("number");
 let purchases = [];
 
 function add() {
-    const price = parseInt(priceElement.value);
-    const number = parseInt(numberElement.value);
-    const purchase = {
-        price: price,
-        number: number,
-    };
-    purchases.push(purchase);
-}
+  const price = parseInt(priceElement.value);
+  const number = parseInt(numberElement.value);
+  let purchase = {
+    price: price,
+    number: number,
+  };
+  purchases.push(purchase);
+  window.alert(`${display()}\n小計は${subtotal()}円です`);
+};
 
+
+
+function display() {
+    let string = "";
+    for (let i = 0; i < purchases.length; i++) {
+        string += `${purchases[i].price}円が${purchases[i].number}点\n`;
+    }
+    return string;
+};
+
+function subtotal() {
+    let sum = 0;
+    for (let i = 0; i < purchases.length; i++) {
+        sum += purchases[i].price * purchases[i].number;
+    }
+    return sum;
+};
 
 function calc() {
-    let sum = 0;
-    for (let index = 0; index < purchases.length; index++) {
-        sum += purchases[index].price * purchases[index].number;
-    }
-    window.alert(`合計は${sum}円です`);
-    purchases = [];
-    priceElement.value= "";
-    numberElement.value= "";
+  const sum = subtotal();
+  const postage = calcPostageFormPurchase(sum);
+  window.alert(`小計は${sum}円、送料は${postage}円です。合計は${sum + postage}円です`);
+  purchases = [];
+  priceElement.value = "";
+  numberElement.value ="";
 }
 
+
+
+  function calcPostageFormPurchase(sum) {
+    if (sum == 0 || sum >= 3000) {
+      return 0;
+    } else if (sum < 2000) {
+      return 500;
+    } else {
+      return 250;
+    }
+  }
