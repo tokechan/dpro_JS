@@ -3,32 +3,57 @@ const numberElement = document.getElementById("number");
 let purchases = [];
 
 function add() {
-  const price = parseInt(priceElement.value);
-  const number = parseInt(numberElement.value);
+  const price = priceElement.value;
+  const number = numberElement.value;
   let purchase = {
-    price: price,
-    number: number,
+    price: parseInt(price),
+    number: parseInt(number),
   };
-  purchases.push(purchase);
+
+  let newPurchase = true;
+
+  purchases.forEach((item) => {
+    if(item.price === purchase.price) {
+        newPurchase = false;
+    }
+  })
+
+  if (purchases.length < 1 || newPurchase) {
+    purchases.push(purchase);
+  } else {
+        for (let i = 0; i < purchase.length; i++) {
+        if(purchase[i].price === purchase.price) {
+           purchases[i].number += purchase.number;
+    }
+  }
+}
   window.alert(`${display()}\n小計は${subtotal()}円です`);
+  priceElement.value = "";
+  numberElement.value = "";     
 };
 
 
 
 function display() {
-    let string = "";
-    for (let i = 0; i < purchases.length; i++) {
-        string += `${purchases[i].price}円が${purchases[i].number}点\n`;
-    }
-    return string;
+    // let string = "";
+    // for (let i = 0; i < purchases.length; i++) {
+    //     string += `${purchases[i].price}円が${purchases[i].number}点\n`;
+    // }
+    // return string;
+    return purchases.map(purchase => {
+        return `${purchase.price}円が${purchase.number}点`
+    }).join("\n")
 };
 
 function subtotal() {
-    let sum = 0;
-    for (let i = 0; i < purchases.length; i++) {
-        sum += purchases[i].price * purchases[i].number;
-    }
-    return sum;
+    // let sum = 0;
+    // for (let i = 0; i < purchases.length; i++) {
+    //     sum += purchases[i].price * purchases[i].number;
+    // }
+    // return sum;
+    return purchases.reduce((prev, purchase) => {
+        return prev + purchase.price * purchase.number 
+    }, 0);
 };
 
 function calc() {
@@ -51,3 +76,4 @@ function calc() {
       return 250;
     }
   }
+
