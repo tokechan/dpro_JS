@@ -77,3 +77,21 @@ function calc() {
     }
   }
 
+
+function sleep() {
+    console.log("sleep start");
+    const startTime = new Date();
+    while(true) {
+            if(new Date() - startTime > 5000) {
+            console.log("sleep end");
+            return;
+        }
+    }
+}
+console.log("process start");
+sleep();
+console.log("process end");
+
+console.log(new Date);
+
+
