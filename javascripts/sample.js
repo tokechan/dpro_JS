@@ -1,28 +1,10 @@
-function addElement() {
-    const parentElement = document.getElementsByTagName("div")[0];
-    const target = document.getElementsByTagName("h1")[0];
-    parentElement.removeChild(target);
+function operateCSS() {
+    const element = document.getElementsByTagName("p")[0];
+    // element.classList.add("background_pink");
+    // element.classList.remove("blue");
+    element.addEventListener('click', function(){
+        this.classList.toggle('background_pink');
+    });
 };
 
-window.onload = addElement;
-
-
-function addLink() {
-    const element = document.createElement("a");
-    element.setAttribute("href", "https://apple.com");
-    element.innerText ="What is this?";
-    const parentElement = document.getElementsByTagName("div")[0];
-    parentElement.appendChild(element);
-};
-
-
-function removeLink() {
-    const link = document.getElementsByTagName("a")[0];
-    link.removeAttribute("href");
-}
-
-
-window.onload = function() {
-    addLink();
-    removeLink();
-}
+window.onload = operateCSS;

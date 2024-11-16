@@ -38,9 +38,10 @@ function emailValidation() {
         const message = document.createTextNode("Eメールが一致しません") //--5
         element.appendChild(message); //--6
         form.appendChild(element); //--7
+        element.classList.add("alert");
         return false;  //--8
       }
     };
-  };
+  };    
   
   window.onload = emailValidation;
