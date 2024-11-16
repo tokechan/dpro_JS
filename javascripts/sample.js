@@ -8,3 +8,31 @@ function operateCSS() {
 };
 
 window.onload = operateCSS;
+
+
+function alertClick() {
+    alert("you clicked me!");
+};
+
+const button = document.getElementById("btn");
+button.onclick = alertClick;
+
+
+function clickBtn() {
+    const button = document.getElementById("btn");
+    button.addEventListener("click", alertClick3);
+};
+button.addEventListener("click", function(){
+    console.log("don't click me!!!");
+});
+
+function alertClick2() {
+    alert("don't click me!!!");
+};
+
+function alertClick3(e) {
+    e.target.style.backgroundColor = "orange";
+    console.log(e);
+};
+
+window.onload = clickBtn;
