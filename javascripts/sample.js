@@ -71,8 +71,14 @@ $(function(){
 //     });
 // });
 
+// $(function(){
+//     $("#btn").on("click", function(){
+//         $(this).text("クリックされました");
+//     });
+// });
+
 $(function(){
-    $("#btn").on("click", function(){
-        $(this).text("クリックされました");
+    $("#btn").on("click", function() {
+        $("p").toggle("5000", "linear")
     });
 });
